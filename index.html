@@ -91,6 +91,31 @@
       font-weight: 600;
       font-size: 1.1rem;
     }
+    #sales-popup {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: linear-gradient(135deg, #2c2c2c, #3e3e3e);
+      color: #ffffff;
+      padding: 18px 26px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 17px;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #last-sale {
+      margin-top: 30px;
+      padding: 16px;
+      text-align: center;
+      font-size: 15px;
+      color: #666;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -142,8 +167,7 @@
     <section class="section">
       <h2 style="text-align: center;">Choose Your Coaching Option</h2>
 
-      <!-- 1-on-1 Coaching -->
-      <div style="margin-bottom: 2rem; text-align: center;">
+      <div style="text-align: center;">
         <h3>🎯 1-on-1 Online Coaching — $50</h3>
         <p>30-minute personalized session via Zoom or video call.</p>
         <stripe-buy-button
@@ -152,8 +176,7 @@
         </stripe-buy-button>
       </div>
 
-      <!-- Workout Plan -->
-      <div style="margin-bottom: 2rem; text-align: center;">
+      <div style="text-align: center;">
         <h3>💪 Custom Workout Plan — $25</h3>
         <p>Full-body plan tailored to your goals, delivered in PDF format.</p>
         <stripe-buy-button
@@ -162,7 +185,6 @@
         </stripe-buy-button>
       </div>
 
-      <!-- Meal Plan -->
       <div style="text-align: center;">
         <h3>🍽️ Custom Meal Plan — $25</h3>
         <p>Macro-balanced meal plan based on your body and budget.</p>
@@ -183,98 +205,12 @@
         <p>“No BS, just results. Meal plan actually fit my budget and workouts were 🔥.” – T.L.</p>
       </div>
     </section>
-  </div>
 
-  <footer>
-    <p>© 2025 Zaire Washington Fitness</p>
-    <p>
-      Follow me:
-      <a href="#">TikTok</a> |
-      <a href="#">Instagram</a> |
-      <a href="mailto:your@email.com">Email</a>
-    </p>
-  </footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zaire Washington Fitness</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-    }
-
-    .section {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .testimonial {
-      background: #1e1e1e;
-      border-left: 4px solid #f76c6c;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-    }
-
-    footer {
-      background: #1a1a1a;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    #sales-popup {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      background: linear-gradient(135deg, #2c2c2c, #3e3e3e);
-      color: #ffffff;
-      padding: 18px 26px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 17px;
-      z-index: 9999;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    #last-sale {
-      margin-top: 30px;
-      padding: 16px;
-      text-align: center;
-      font-size: 15px;
-      color: #ccc;
-      font-style: italic;
-    }
-  </style>
-</head>
-<body>
-  <!-- MAIN CONTENT -->
-  <div class="section">
-    <h2>💬 Testimonials</h2>
-    <div class="testimonial">
-      <p>“Zaire's plan helped me lose 15 pounds and feel confident in my body again.” – J.M.</p>
+    <!-- POPUP -->
+    <div id="sales-popup">
+      <span id="popup-text">Someone just purchased!</span>
     </div>
-    <div class="testimonial">
-      <p>“No BS, just results. Meal plan actually fit my budget and workouts were 🔥.” – T.L.</p>
-    </div>
+    <div id="last-sale"></div>
   </div>
 
   <!-- FOOTER -->
@@ -288,43 +224,22 @@
     </p>
   </footer>
 
-  <!-- POPUP -->
-  <div id="sales-popup">
-    <span id="popup-text">Someone just purchased!</span>
-  </div>
-
-  <!-- LAST SALE TEXT -->
-  <div id="last-sale"></div>
-
-  <!-- AUDIO SOUND EFFECT -->
+  <!-- SOUND -->
   <audio id="ping-sound" preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_e0adf27c0a.mp3?filename=ui-confirmation-alert-1-125700.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- JAVASCRIPT -->
+  <!-- SCRIPT -->
   <script>
     const popup = document.getElementById('sales-popup');
     const popupText = document.getElementById('popup-text');
     const lastSale = document.getElementById('last-sale');
     const pingSound = document.getElementById('ping-sound');
 
-    const names = [
-      "Jordan", "Emily", "Chris", "Tasha", "Malik", "Raven", "Tyrone", "Jasmine",
-      "Andre", "Kayla", "Marcus", "Zoe", "Lamar", "Nia", "DeShawn", "Brianna",
-      "Ahmad", "Taylor", "Sean", "Danielle", "Tyreek", "Maya"
-    ];
-
-    const phillyAreas = [
-      "Philadelphia", "North Philly", "West Philly", "Southwest", "Center City", "Kensington", "Germantown", "Olney", "Mount Airy"
-    ];
-
-    const otherCities = [
-      "New York", "Atlanta", "Chicago", "Los Angeles", "Houston", "Baltimore", "Camden", "Newark", "Trenton", "Pittsburgh"
-    ];
-
-    const items = [
-      "1-on-1 Coaching", "Workout Plan", "Meal Plan", "Custom Training Plan", "Beginner Bundle"
-    ];
+    const names = ["Jordan", "Emily", "Chris", "Tasha", "Malik", "Raven", "Tyrone", "Jasmine", "Andre", "Kayla", "Marcus", "Zoe", "Lamar", "Nia", "DeShawn", "Brianna", "Ahmad", "Taylor", "Sean", "Danielle", "Tyreek", "Maya"];
+    const phillyAreas = ["Philadelphia", "North Philly", "West Philly", "Southwest", "Center City", "Kensington", "Germantown", "Olney", "Mount Airy"];
+    const otherCities = ["New York", "Atlanta", "Chicago", "Los Angeles", "Houston", "Baltimore", "Camden", "Newark", "Trenton", "Pittsburgh"];
+    const items = ["1-on-1 Coaching", "Workout Plan", "Meal Plan", "Custom Training Plan", "Beginner Bundle"];
 
     function getRandomItem(list) {
       return list[Math.floor(Math.random() * list.length)];
@@ -338,17 +253,13 @@
 
       popupText.textContent = message;
       popup.style.display = 'block';
-
-      // Play sound
       pingSound.play();
 
-      // Animate in
       requestAnimationFrame(() => {
         popup.style.opacity = '1';
         popup.style.transform = 'translateY(0)';
       });
 
-      // Animate out
       setTimeout(() => {
         popup.style.opacity = '0';
         popup.style.transform = 'translateY(20px)';
@@ -357,18 +268,16 @@
         }, 400);
       }, 6000);
 
-      // Update last sale
       lastSale.textContent = message;
 
-      // Show next popup randomly in 30 sec – 1 hour
       const min = 30 * 1000;
       const max = 60 * 60 * 1000;
       const nextDelay = Math.floor(Math.random() * (max - min + 1)) + min;
       setTimeout(showPopup, nextDelay);
     }
 
-    // First popup after 10 seconds
     setTimeout(showPopup, 10000);
   </script>
 </body>
 </html>
+
