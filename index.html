@@ -196,3 +196,68 @@
   </footer>
 </body>
 </html>
+<!-- 💬 Sales Popup Notification -->
+<div id="sales-popup" style="
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #1f1f1f;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  z-index: 9999;
+">
+  <span id="popup-text">Someone just purchased!</span>
+</div>
+
+<script>
+  const popup = document.getElementById('sales-popup');
+  const popupText = document.getElementById('popup-text');
+
+  const names = [
+    "Jordan", "Emily", "Chris", "Tasha", "Malik", "Raven", "Tyrone", "Jasmine",
+    "Andre", "Kayla", "Marcus", "Zoe", "Lamar", "Nia", "DeShawn", "Brianna",
+    "Ahmad", "Taylor", "Sean", "Danielle", "Tyreek", "Maya"
+  ];
+
+  const phillyAreas = [
+    "Philadelphia", "North Philly", "West Philly", "Southwest", "Center City", "Kensington", "Germantown", "Olney", "Mount Airy"
+  ];
+
+  const otherCities = [
+    "New York", "Atlanta", "Chicago", "Los Angeles", "Houston", "Baltimore", "Camden", "Newark", "Trenton", "Pittsburgh"
+  ];
+
+  const items = [
+    "1-on-1 Coaching", "Workout Plan", "Meal Plan", "Custom Training Plan", "Beginner Bundle"
+  ];
+
+  function getRandomItem(list) {
+    return list[Math.floor(Math.random() * list.length)];
+  }
+
+  function showPopup() {
+    const name = getRandomItem(names);
+    const city = Math.random() < 0.7 ? getRandomItem(phillyAreas) : getRandomItem(otherCities);
+    const item = getRandomItem(items);
+
+    popupText.textContent = `🛒 ${name} from ${city} just purchased ${item}!`;
+    popup.style.display = 'block';
+
+    // Hide after 6 seconds
+    setTimeout(() => {
+      popup.style.display = 'none';
+    }, 6000);
+
+    // Random delay between 1 and 7 hours (in ms)
+    const nextPopupDelay = Math.floor(Math.random() * (7 - 1 + 1) + 1) * 60 * 60 * 1000;
+    setTimeout(showPopup, nextPopupDelay);
+  }
+
+  // Start popup loop after 10 seconds
+  setTimeout(showPopup, 10000);
+</script>
