@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   <style>
     body {
       font-family: 'Urbanist', sans-serif;
@@ -103,6 +104,7 @@
   </div>
 
   <div class="container">
+    <!-- SERVICES -->
     <section class="section services">
       <h2>What I Offer</h2>
       <div>
@@ -119,52 +121,60 @@
       </div>
     </section>
 
+    <!-- COACHING FORM -->
     <section class="section">
       <h2>Apply for Coaching</h2>
       <p>Fill out this form so I can learn about your goals and start building your custom plan:</p>
       <div class="cta">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdpv0oQcGsr7fWb_R5fO5AhD7Fitqe0ZMFJ0NdZ8aKhwWMGZg/viewform?usp=sharing&ouid=102462636622863910614" target="_blank">📩 Apply Now</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdpv0oQcGsr7fWb_R5fO5AhD7Fitqe0ZMFJ0NdZ8aKhwWMGZg/viewform?usp=sharing" target="_blank">📩 Apply Now</a>
       </div>
     </section>
 
+    <!-- GALLERY -->
     <section class="section gallery">
       <h2>📸 My Transformation</h2>
+      <img src="45CA8CAF-D622-4CB9-85CC-18C8C37C7F19.jpeg" alt="Before Progress" />
+      <img src="297E4525-EE97-4AF9-AEB0-B78C3E212080.jpeg" alt="After Progress" />
+      <img src="B727DDB1-D6A3-4FB6-9626-279EA8BE14ED.jpeg" alt="Final Transformation" />
     </section>
-<img src="45CA8CAF-D622-4CB9-85CC-18C8C37C7F19.jpeg" alt="Before Progress" style="max-width: 100%; height: auto;" />
-<img src="297E4525-EE97-4AF9-AEB0-B78C3E212080.jpeg" alt="After Progress" style="max-width: 100%; height: auto;" />
-<img src="B727DDB1-D6A3-4FB6-9626-279EA8BE14ED.jpeg" alt="Final Transformation" style="max-width: 100%; height: auto;" />
-    <section id="services" style="text-align: center; padding: 2rem;">
-  <h2 style="font-size: 2rem; margin-bottom: 1rem;">Choose Your Coaching Option</h2>
 
-<!-- === 1-on-1 Coaching ($50) === -->
-<section id="coaching">
-  <h2>1-on-1 Online Coaching — $50</h2>
-  <p>30-minute personalized session via Zoom or video call. Tailored to your fitness or nutrition goals.</p>
-  <stripe-buy-button
-    buy-button-id="buy_btn_1Roec8Q9usF2sLH899OX4L1l"
-    publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
-  </stripe-buy-button>
-</section>
+    <!-- PAYMENT OPTIONS -->
+    <section class="section">
+      <h2 style="text-align: center;">Choose Your Coaching Option</h2>
 
-<!-- === Workout Plan ($25) === -->
-<section id="workout-plan">
-  <h2>Custom Workout Plan — $25</h2>
-  <p>A full-body routine customized to your fitness goals, equipment, and schedule. Delivered in PDF format.</p>
-  <stripe-buy-button
-    buy-button-id="buy_btn_1RoeefQ9usF2sLH8UYnUb7ye"
-    publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
-  </stripe-buy-button>
-</section>
+      <!-- 1-on-1 Coaching -->
+      <div style="margin-bottom: 2rem; text-align: center;">
+        <h3>🎯 1-on-1 Online Coaching — $50</h3>
+        <p>30-minute personalized session via Zoom or video call.</p>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1Roec8Q9usF2sLH899OX4L1l"
+          publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
+        </stripe-buy-button>
+      </div>
 
-<!-- === Meal Plan ($25) === -->
-<section id="meal-plan">
-  <h2>Custom Meal Plan — $25</h2>
-  <p>Personalized nutrition plan based on your body type, goals, and preferences. Includes calories and macros.</p>
-  <stripe-buy-button
-    buy-button-id="buy_btn_1RoeZsQ9usF2sLH87bq2tTgf"
-    publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
-  </stripe-buy-button>
-  <!-- Workout or Meal Plan -->
+      <!-- Workout Plan -->
+      <div style="margin-bottom: 2rem; text-align: center;">
+        <h3>💪 Custom Workout Plan — $25</h3>
+        <p>Full-body plan tailored to your goals, delivered in PDF format.</p>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1RoeefQ9usF2sLH8UYnUb7ye"
+          publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
+        </stripe-buy-button>
+      </div>
+
+      <!-- Meal Plan -->
+      <div style="text-align: center;">
+        <h3>🍽️ Custom Meal Plan — $25</h3>
+        <p>Macro-balanced meal plan based on your body and budget.</p>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1RoeZsQ9usF2sLH87bq2tTgf"
+          publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
+        </stripe-buy-button>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section">
       <h2>💬 Testimonials</h2>
       <div class="testimonial">
         <p>“Zaire's plan helped me lose 15 pounds and feel confident in my body again.” – J.M.</p>
