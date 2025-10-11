@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaire Fitness Coaching</title>
+    <title>Zaire Washington Fitness Coaching</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,15 +14,16 @@
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     
     <style>
-        /* CSS Variables for a clean, professional palette */
+        /* CSS Variables for a professional blue palette */
         :root {
-            --primary-color: #3f72af; /* Deep Blue */
-            --secondary-color: #dbe2ef; /* Light Gray/Blue */
-            --accent-color: #f94144; /* Alert Red for CTA/Sales */
-            --text-color: #1f1f1f;
+            --primary-color: #2c3e50; /* Dark Slate Blue/Navy */
+            --secondary-color: #ecf0f1; /* Very Light Gray */
+            --accent-color: #3498db; /* Medium Bright Blue for CTA */
+            --patreon-color: #ff424d; /* Patreon Red */
+            --text-color: #2c3e50;
             --light-text-color: #ffffff;
-            --bg-light: #f9f9f9;
-            --bg-dark: #1f1f1f;
+            --bg-light: #ffffff;
+            --bg-dark: #2c3e50;
         }
 
         body {
@@ -88,7 +89,7 @@
         .service-card, .price-option {
             flex: 1;
             min-width: 280px;
-            background: var(--light-text-color);
+            background: var(--bg-light);
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
@@ -97,14 +98,14 @@
         
         .service-card h3 {
             margin-top: 0;
-            color: var(--primary-color);
+            color: var(--accent-color);
             font-size: 1.5rem;
         }
 
         /* Call To Action Buttons */
         .cta-button {
             display: inline-block;
-            background: var(--primary-color);
+            background: var(--accent-color);
             color: white;
             padding: 0.85rem 2rem;
             border-radius: 8px;
@@ -115,7 +116,7 @@
         }
 
         .cta-button:hover {
-            background: #2a5a92;
+            background: #2980b9;
         }
 
         /* Gallery */
@@ -127,7 +128,7 @@
 
         .gallery img {
             width: 100%;
-            height: 350px; /* Uniform height for better layout */
+            height: 350px;
             object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -142,7 +143,7 @@
 
         .testimonial {
             background: var(--secondary-color);
-            border-left: 5px solid var(--primary-color);
+            border-left: 5px solid var(--accent-color);
             padding: 1.5rem;
             font-style: italic;
         }
@@ -160,8 +161,8 @@
         }
 
         .patreon-section h2 {
-            color: #ff424d; /* Patreon Red */
-            border-bottom-color: #ff424d;
+            color: var(--patreon-color);
+            border-bottom-color: var(--patreon-color);
         }
         
         .patreon-benefits {
@@ -195,7 +196,7 @@
         }
         
         .price-option p {
-            min-height: 40px; /* Keep description height consistent */
+            min-height: 40px;
         }
 
         /* Footer */
@@ -208,12 +209,12 @@
         }
 
         footer a {
-            color: var(--primary-color);
+            color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
         }
         
-        /* Popup Styling - Changed to be more subtle */
+        /* Popup Styling */
         #sales-popup {
             display: none;
             position: fixed;
@@ -258,15 +259,15 @@
             <h2 data-aos="fade-up">My Approach</h2>
             <div class="services">
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>📋 Custom Workout Plans</h3>
+                    <h3>Custom Workout Plans</h3>
                     <p>Routines built around your goals, body type, and the equipment you have access to, ensuring efficient progress.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3>🍽️ Targeted Nutrition</h3>
+                    <h3>Targeted Nutrition</h3>
                     <p>Sustainable, budget-conscious meal planning focused on macro-balancing for optimal energy and body composition.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="600">
-                    <h3>🎯 1-on-1 Accountability</h3>
+                    <h3>1-on-1 Accountability</h3>
                     <p>Dedicated weekly check-ins, direct support, and tailored feedback to keep you motivated and on track.</p>
                 </div>
             </div>
@@ -283,10 +284,10 @@
                 <li>Life & Fitness Advice</li>
                 <li>Direct Feedback</li>
             </ul>
-            <a href="https://www.patreon.com/cw/u79869723" target="_blank" class="cta-button" style="background: #ff424d;">
-                🔥 Join Our Private Community
+            <a href="https://www.patreon.com/cw/u79869723" target="_blank" class="cta-button" style="background: var(--patreon-color);">
+                Join Our Private Community
             </a>
-            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;"/p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">(Link: patreon.com/MindsetAndMuscle)</p>
         </section>
 
         <section class="section" data-aos="fade-up">
@@ -296,7 +297,7 @@
             </p>
             <div style="text-align: center;">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSdpv0oQcGsr7fWb_R5fO5AhD7Fitqe0ZMFJ0NdZ8aKhwWMGZg/viewform?usp=sharing" target="_blank" class="cta-button">
-                    📩 Apply for Coaching Now
+                    Apply for Coaching Now
                 </a>
             </div>
         </section>
@@ -314,29 +315,29 @@
             <h2 data-aos="fade-up">Purchase Individual Plans</h2>
             <div class="pricing-table">
                 <div class="price-option" data-aos="fade-up" data-aos-delay="100">
-                    <h3>🎯 1-on-1 Online Coaching — $200</h3>
-                    <p>60-minute in-depth session via Zoom for strategy and technique review.</p>
+                    <h3>1-on-1 Online Coaching — $200</h3>
+                    <p>60-minute in-depth strategy and technique review session via Zoom.</p>
                     <stripe-buy-button
-                        buy-button-id="buy_btn_1Roec8Q9usF2sLH899OX4L1l"
-                        publishable-key="https://buy.stripe.com/bJebJ37VS6y5bMydkL5c406">
+                        buy-button-id="buy_btn_1Ru0m7Q9usF2sLH8lC893M34"
+                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
                     </stripe-buy-button>
                 </div>
 
                 <div class="price-option" data-aos="fade-up" data-aos-delay="200">
-                    <h3>💪 Custom Workout Plan — $40</h3>
+                    <h3>Custom Workout Plan — $40</h3>
                     <p>Tailored 4-week workout routine (PDF) for gym or home-based training.</p>
                     <stripe-buy-button
-                        buy-button-id="buy_btn_1RoeefQ9usF2sLH8UYnUb7ye"
-                        publishable-key="https://buy.stripe.com/bJecN71xu2hPeYKbcD5c407">
+                        buy-button-id="buy_btn_1Ru0qPQ9usF2sLH80g8N3X6z"
+                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
                     </stripe-buy-button>
                 </div>
 
                 <div class="price-option" data-aos="fade-up" data-aos-delay="300">
-                    <h3>🍽️ Custom Nutrition Guide — $40</h3>
+                    <h3>Custom Nutrition Guide — $40</h3>
                     <p>Personalized nutrition guide focused on your goals, preferences, and budget.</p>
                     <stripe-buy-button
-                        buy-button-id="buy_btn_1RoeZsQ9usF2sLH87bq2tTgf"
-                        publishable-key="https://buy.stripe.com/fZu14pb84g8F6se2G75c405">
+                        buy-button-id="buy_btn_1Ru0rkQ9usF2sLH8eS0B2bOq"
+                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
                     </stripe-buy-button>
                 </div>
             </div>
@@ -372,15 +373,14 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            once: true, // Animation only runs once on scroll down
-            duration: 800, // Animation duration
+            once: true,
+            duration: 800,
         });
     </script>
     
     <script>
         const popup = document.getElementById('sales-popup');
         const popupText = document.getElementById('popup-text');
-        // const pingSound = document.getElementById('ping-sound'); // Uncomment if using sound
 
         const names = ["Marcus", "Taylor", "Jordan", "Alex", "Sam", "Emily", "Chris", "Maya", "Daniel", "Chloe", "Ryan", "Aisha"];
         const items = ["Custom Workout Plan", "1-on-1 Coaching Session", "Custom Nutrition Guide", "Starter Bundle"];
@@ -392,11 +392,11 @@
         function showPopup() {
             const name = getRandomItem(names);
             const item = getRandomItem(items);
+            // Removed emoji (🛒) from the innerHTML and kept it professional
             const message = `<span class="last-purchase-text">${name}</span> just purchased a <span class="last-purchase-text">${item}</span>!`;
 
-            popupText.innerHTML = `🛒 ${message}`;
+            popupText.innerHTML = message;
             popup.style.display = 'block';
-            // if (pingSound) pingSound.play(); // Uncomment if using sound
 
             // Animate In
             requestAnimationFrame(() => {
@@ -410,7 +410,7 @@
                 popup.style.transform = 'translateX(-100%)';
                 setTimeout(() => {
                     popup.style.display = 'none';
-                }, 500); // Wait for the transition to finish
+                }, 500);
             }, 6000);
 
             // Set the next random interval: between 1 hour (3,600,000 ms) and 2 hours (7,200,000 ms)
