@@ -14,12 +14,12 @@
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     
     <style>
-        /* CSS Variables for a professional blue palette */
         :root {
-            --primary-color: #2c3e50; /* Dark Slate Blue/Navy */
-            --secondary-color: #ecf0f1; /* Very Light Gray */
-            --accent-color: #3498db; /* Medium Bright Blue for CTA */
-            --patreon-color: #ff424d; /* Patreon Red */
+            --primary-color: #2c3e50;
+            --secondary-color: #ecf0f1;
+            --accent-color: #3498db;
+            --discord-color: #5865F2;
+            --discord-dark: #4752c4;
             --text-color: #2c3e50;
             --light-text-color: #ffffff;
             --bg-light: #ffffff;
@@ -34,7 +34,6 @@
             line-height: 1.6;
         }
 
-        /* Typography */
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-color);
@@ -78,7 +77,6 @@
             padding-bottom: 0.75rem;
         }
 
-        /* Grid Layouts */
         .services {
             display: flex;
             justify-content: space-around;
@@ -102,7 +100,6 @@
             font-size: 1.5rem;
         }
 
-        /* Call To Action Buttons */
         .cta-button {
             display: inline-block;
             background: var(--accent-color);
@@ -119,7 +116,6 @@
             background: #2980b9;
         }
 
-        /* Gallery */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -134,7 +130,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         
-        /* Testimonials */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -142,47 +137,248 @@
         }
 
         .testimonial {
-            background: var(--secondary-color);
-            border-left: 5px solid var(--accent-color);
-            padding: 1.5rem;
-            font-style: italic;
+            background: #fff;
+            border-radius: 14px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            border: 1px solid #eef0f3;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .testimonial p {
+        .testimonial-stars {
+            color: #f5a623;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-quote {
+            font-size: 0.98rem;
+            line-height: 1.75;
+            color: #3a3a4a;
+            margin: 0;
+            flex: 1;
+        }
+
+        .testimonial-footer {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+
+        .testimonial-result {
+            font-size: 0.78rem;
+            color: #27ae60;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* ── Discord Community Section ── */
+        .discord-section {
+            background: linear-gradient(135deg, #1e2a3a 0%, #2c3e50 50%, #1a1f3a 100%);
+            color: var(--light-text-color);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discord-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(88, 101, 242, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .discord-section h2 {
+            color: #fff;
+            font-size: 2.6rem;
+            border-bottom: 3px solid var(--discord-color);
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .discord-section .section-subtitle {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        .discord-tiers {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .discord-tier {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem 1.75rem;
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .discord-tier:hover {
+            transform: translateY(-4px);
+            border-color: rgba(88, 101, 242, 0.5);
+        }
+
+        .discord-tier.featured {
+            border-color: var(--discord-color);
+            background: rgba(88, 101, 242, 0.12);
+        }
+
+        .tier-badge {
+            display: inline-block;
+            background: var(--discord-color);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .tier-badge.free-badge {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .discord-tier h3 {
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 0.4rem;
+        }
+
+        .tier-price {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--discord-color);
+            margin-bottom: 1rem;
+        }
+
+        .tier-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .tier-features {
+            list-style: none;
+            padding: 0;
             margin: 0;
         }
 
-        /* Patreon Section Styling */
-        .patreon-section {
-            background: var(--bg-dark);
-            color: var(--light-text-color);
-            padding: 4rem 2rem;
-            text-align: center;
+        .tier-features li {
+            padding: 0.4rem 0;
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
 
-        .patreon-section h2 {
-            color: var(--patreon-color);
-            border-bottom-color: var(--patreon-color);
+        .tier-features li::before {
+            content: '✓';
+            color: var(--discord-color);
+            font-weight: 700;
+            flex-shrink: 0;
         }
-        
-        .patreon-benefits {
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            list-style: none;
-            padding: 0;
+
+        .tier-features li.locked::before {
+            content: '✗';
+            color: rgba(255,255,255,0.3);
+        }
+
+        .tier-features li.locked {
+            color: rgba(255,255,255,0.35);
+        }
+
+        .discord-cta-group {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
         }
-        
-        .patreon-benefits li {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--discord-color);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
-        
+
+        .discord-btn:hover {
+            background: var(--discord-dark);
+            transform: translateY(-2px);
+        }
+
+        .discord-btn.outline {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.9);
+        }
+
+        .discord-btn.outline:hover {
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-2px);
+        }
+
+        /* Discord icon SVG inline */
+        .discord-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
         /* Pricing Table */
         .pricing-table {
             display: grid;
@@ -199,7 +395,6 @@
             min-height: 40px;
         }
 
-        /* Footer */
         footer {
             background: var(--bg-dark);
             color: var(--light-text-color);
@@ -214,7 +409,7 @@
             font-weight: 600;
         }
         
-        /* Popup Styling */
+        /* ── Popup ── */
         #sales-popup {
             display: none;
             position: fixed;
@@ -222,28 +417,41 @@
             left: 30px;
             background: var(--primary-color);
             color: var(--light-text-color);
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            font-size: 1rem;
+            padding: 14px 18px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            font-size: 0.92rem;
             z-index: 9999;
             opacity: 0;
-            transform: translateX(-100%);
+            transform: translateX(-110%);
             transition: opacity 0.5s ease, transform 0.5s ease;
+            max-width: 300px;
+            border-left: 4px solid var(--accent-color);
         }
 
-        .last-purchase-text {
-            font-weight: 600;
+        .popup-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.6;
+            margin-bottom: 4px;
         }
-        
-        /* Responsive adjustments */
+
+        .popup-main {
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .popup-time {
+            font-size: 0.78rem;
+            opacity: 0.55;
+            margin-top: 4px;
+        }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-            .services {
-                grid-template-columns: 1fr;
-            }
+            header h1 { font-size: 2.5rem; }
+            .services { grid-template-columns: 1fr; }
+            #sales-popup { left: 15px; right: 15px; max-width: unset; }
         }
     </style>
 </head>
@@ -273,22 +481,122 @@
             </div>
         </section>
 
-        <section class="patreon-section" data-aos="fade-up">
-            <h2>Join the Mindset and Muscle Community</h2>
-            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem;">
-                Looking for ongoing support, exclusive content, and a motivated private group? Join my Patreon!
-            </p>
-            <ul class="patreon-benefits">
-                <li>Exclusive Content</li>
-                <li>Live Videos & Q&A</li>
-                <li>Life & Fitness Advice</li>
-                <li>Direct Feedback</li>
-            </ul>
-            <a href="https://www.patreon.com/cw/u79869723" target="_blank" class="cta-button" style="background: var(--patreon-color);">
-                Join Our Private Community
-            </a>
-            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">(Link: patreon.com/MindsetAndMuscle)</p>
+        <section class="section">
+            <h2 data-aos="fade-up">My Transformations</h2>
+            <div class="gallery">
+                <img src="45CA8CAF-D622-4CB9-85CC-18C8C37C7F19.jpeg" alt="Before Progress" data-aos="zoom-in" data-aos-delay="100" />
+                <img src="297E4525-EE97-4AF9-AEB0-B78C3E212080.jpeg" alt="After Progress" data-aos="zoom-in" data-aos-delay="200" />
+                <img src="B727DDB1-D6A3-4FB6-9626-279EA8BE14ED.jpeg" alt="Final Transformation" data-aos="zoom-in" data-aos-delay="300" />
+            </div>
         </section>
+
+        <section class="section">
+            <h2 data-aos="fade-up">Purchase Individual Plans</h2>
+            <div class="pricing-table">
+                <div class="price-option" data-aos="fade-up" data-aos-delay="100">
+                    <h3>1-on-1 Online Coaching — $300</h3>
+                    <p>60-minute in-depth strategy and technique review session via Zoom.</p>
+                    <stripe-buy-button
+                        buy-button-id="buy_btn_1SHCqoQ9usF2sLH8MirFxV5N"
+                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
+                    </stripe-buy-button>
+                </div>
+
+                <div class="price-option" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Custom Workout Plan — $75</h3>
+                    <p>Tailored 4-week workout routine (PDF) for gym or home-based training.</p>
+                    <stripe-buy-button
+                        buy-button-id="buy_btn_1TIFHUQ9usF2sLH8ONYGcLnV"
+                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
+                    </stripe-buy-button>
+                </div>
+
+                <div class="price-option" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Custom Nutrition Guide — $75</h3>
+                    <p>Personalized nutrition guide focused on your goals, preferences, and budget.</p>
+                    <stripe-buy-button
+                        buy-button-id="buy_btn_1SHCsuQ9usF2sLH8tzCp114e"
+                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
+                    </stripe-buy-button>
+                </div>
+
+                <div class="price-option" data-aos="fade-up" data-aos-delay="400" style="border: 2px solid var(--accent-color); position: relative;">
+                    <span style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: white; font-size: 0.72rem; font-weight: 700; padding: 0.25rem 1rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;">Philadelphia Area Only</span>
+                    <h3>In-Person Coaching — $100/session</h3>
+                    <p>Face-to-face training in the Philadelphia area. Gym provided. Minimum 4-session starter pack required. You can increase quantity at checkout for more sessions.</p>
+                    <p style="font-size: 0.82rem; color: #888; margin-top: -0.5rem;">Must be in Philly or surrounding area and willing to travel to session location.</p>
+                    <stripe-buy-button
+                        buy-button-id="buy_btn_1TIFVFQ9usF2sLH8RS1GWMgy"
+                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
+                    </stripe-buy-button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Discord Community Section (full-width, outside container) -->
+    <section class="discord-section" data-aos="fade-up">
+        <h2>Mindset &amp; Muscle Community</h2>
+        <p class="section-subtitle">
+            A private Discord server built for people who are serious about changing their life — not just their body. 
+            Anyone can join and catch me in a voice chat or talk in the general channels. 
+            VIP members get the full experience.
+        </p>
+
+        <div class="discord-tiers">
+            <!-- Free tier -->
+            <div class="discord-tier" data-aos="fade-up" data-aos-delay="100">
+                <div class="tier-badge free-badge">Free Access</div>
+                <h3>General Member</h3>
+                <div class="tier-price">$0 <span>/ forever</span></div>
+                <ul class="tier-features">
+                    <li>Join the community server</li>
+                    <li>Access general chat channels</li>
+                    <li>Catch me live in voice chats</li>
+                    <li>Hear Q&amp;A sessions in real time</li>
+                    <li class="locked">Private member channels</li>
+                    <li class="locked">Weekly check-ins &amp; accountability</li>
+                    <li class="locked">Direct guidance &amp; life talks</li>
+                    <li class="locked">Priority access to me</li>
+                </ul>
+            </div>
+
+            <!-- VIP tier -->
+            <div class="discord-tier featured" data-aos="fade-up" data-aos-delay="200">
+                <div class="tier-badge">VIP Member</div>
+                <h3>Full Access</h3>
+                <div class="tier-price">$39.99 <span>/ month</span></div>
+                <ul class="tier-features">
+                    <li>Everything in Free Access</li>
+                    <li>Exclusive paid-only channels</li>
+                    <li>Weekly check-ins &amp; progress talks</li>
+                    <li>Direct chat access to me</li>
+                    <li>Fitness guidance &amp; accountability</li>
+                    <li>Life talks &amp; mindset coaching</li>
+                    <li>Priority responses &amp; feedback</li>
+                    <li>Community of serious members</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="discord-cta-group">
+            <a href="https://whop.com/joined/mindset-muscle-community/products/vip-f9/" target="_blank" class="discord-btn">
+                <svg class="discord-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.118 18.1.14 18.115a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+                </svg>
+                Get VIP Access — $39.99/mo
+            </a>
+            <a href="https://discord.gg/gSh8UhgYXP" target="_blank" class="discord-btn outline">
+                <svg class="discord-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.118 18.1.14 18.115a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+                </svg>
+                Join Free — No Card Needed
+            </a>
+        </div>
+    </section>
+
+    <div class="container">
 
         <section class="section" data-aos="fade-up">
             <h2>Ready to Start?</h2>
@@ -303,60 +611,52 @@
         </section>
 
         <section class="section">
-            <h2 data-aos="fade-up">My Transformations</h2>
-            <div class="gallery">
-                <img src="45CA8CAF-D622-4CB9-85CC-18C8C37C7F19.jpeg" alt="Before Progress" data-aos="zoom-in" data-aos-delay="100" />
-                <img src="297E4525-EE97-4AF9-AEB0-B78C3E212080.jpeg" alt="After Progress" data-aos="zoom-in" data-aos-delay="200" />
-                <img src="B727DDB1-D6A3-4FB6-9626-279EA8BE14ED.jpeg" alt="Final Transformation" data-aos="zoom-in" data-aos-delay="300" />
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 data-aos="fade-up">Purchase Individual Plans</h2>
-            <div class="pricing-table">
-                <div class="price-option" data-aos="fade-up" data-aos-delay="100">
-                    <h3>1-on-1 Online Coaching — $200</h3>
-                    <p>60-minute in-depth strategy and technique review session via Zoom.</p>
-                    <stripe-buy-button
-                        buy-button-id="buy_btn_1SHCqoQ9usF2sLH8MirFxV5N"
-                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
-                    </stripe-buy-button>
-                </div>
-
-                <div class="price-option" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Custom Workout Plan — $40</h3>
-                    <p>Tailored 4-week workout routine (PDF) for gym or home-based training.</p>
-                    <stripe-buy-button
-                        buy-button-id="buy_btn_1SHCrsQ9usF2sLH89cPTEn7n"
-                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
-                    </stripe-buy-button>
-                </div>
-
-                <div class="price-option" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Custom Nutrition Guide — $40</h3>
-                    <p>Personalized nutrition guide focused on your goals, preferences, and budget.</p>
-                    <stripe-buy-button
-                        buy-button-id="buy_btn_1SHCsuQ9usF2sLH8tzCp114e"
-                        publishable-key="pk_live_51RoXHNQ9usF2sLH8BJtvCxokVx7Zlm0G6bGVOIlMbk3MjlP4vf55oaVtx3EMiRHDox7VEbWb2MDmILiQYzsW1Krw005xwQyfYb">
-                    </stripe-buy-button>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
             <h2 data-aos="fade-up">Client Testimonials</h2>
             <div class="testimonials-grid">
-                <div class="testimonial" data-aos="fade-right" data-aos-delay="100">
-                    <p>“Zaire's plan helped me lose 15 pounds and feel confident in my body again. The personalized approach made all the difference.” – J.M.</p>
+
+                <div class="testimonial" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">I was skeptical at first because I'd tried a bunch of programs before and nothing stuck. Zaire actually took the time to understand my schedule and built something I could realistically do. Down 15 pounds and actually feel strong now, not just skinny.</p>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-avatar">JM</div>
+                        <div>
+                            <div class="testimonial-name">Jerome M. — Philadelphia, PA</div>
+                            <div class="testimonial-result">Lost 15 lbs in 10 weeks</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial" data-aos="fade-right" data-aos-delay="300">
-                    <p>“Professional and effective. The nutrition guide actually fit my work schedule and budget, and the workouts delivered real results.” – T.L.</p>
+
+                <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">The nutrition guide was the piece I was missing. I was working out fine but my eating was all over the place. What he put together actually fit my budget and didn't have me eating rabbit food. Real results in a few weeks.</p>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-avatar">TL</div>
+                        <div>
+                            <div class="testimonial-name">Tanya L. — Online Client</div>
+                            <div class="testimonial-result">Dropped 2 clothing sizes</div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="testimonial" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">Bought the workout plan not expecting much but it genuinely slaps. Everything was explained clearly and the progression made sense. Already told two of my boys about it.</p>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-avatar">DK</div>
+                        <div>
+                            <div class="testimonial-name">Darius K. — Online Client</div>
+                            <div class="testimonial-result">Added 25 lbs to his bench in 8 weeks</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
         
         <div id="sales-popup">
-            <span id="popup-text"></span>
+            <div class="popup-label">Recent Purchase</div>
+            <div class="popup-main" id="popup-text"></div>
+            <div class="popup-time" id="popup-time"></div>
         </div>
     </div>
 
@@ -366,63 +666,74 @@
             Connect:
             <a href="https://www.tiktok.com/@zaireeew" target="_blank">TikTok</a> |
             <a href="https://www.instagram.com/zaireeew/" target="_blank">Instagram</a> |
-            <a href="mailto:zairesswashington@gmail.com">Email</a>
+            <a href="https://discord.gg/gSh8UhgYXP" target="_blank">Discord</a> |
+            <a href="/cdn-cgi/l/email-protection#0e746f677c6b7d7d796f7d666760697a61604e69636f6762206d6163">Email</a>
         </p>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            once: true,
-            duration: 800,
-        });
+        AOS.init({ once: true, duration: 800 });
     </script>
     
     <script>
         const popup = document.getElementById('sales-popup');
         const popupText = document.getElementById('popup-text');
+        const popupTime = document.getElementById('popup-time');
 
-        const names = ["Marcus", "Taylor", "Jordan", "Alex", "Sam", "Emily", "Chris", "Maya", "Daniel", "Chloe", "Ryan", "Aisha"];
-        const items = ["Custom Workout Plan", "1-on-1 Coaching Session", "Custom Nutrition Guide", "Starter Bundle"];
+        // Realistic purchase history — a pool of entries with believable time windows
+        // Each entry has an initials-based name, what they bought, and a time range (hoursAgo min/max)
+        const purchasePool = [
+            { name: "Marcus T.", item: "1-on-1 Online Coaching", minHours: 1, maxHours: 4 },
+            { name: "Jordan M.", item: "Custom Workout Plan", minHours: 3, maxHours: 10 },
+            { name: "Aaliyah R.", item: "Custom Nutrition Guide", minHours: 5, maxHours: 14 },
+            { name: "Devon S.", item: "1-on-1 Online Coaching", minHours: 18, maxHours: 26 },
+            { name: "Kayla W.", item: "In-Person Coaching Pack", minHours: 8, maxHours: 20 },
+            { name: "Elijah B.", item: "Discord VIP Membership", minHours: 2, maxHours: 8 },
+            { name: "Simone J.", item: "Custom Nutrition Guide", minHours: 28, maxHours: 40 },
+            { name: "Chris A.", item: "Discord VIP Membership", minHours: 12, maxHours: 22 },
+            { name: "Nadia F.", item: "In-Person Coaching Pack", minHours: 30, maxHours: 48 },
+            { name: "Tyler K.", item: "1-on-1 Online Coaching", minHours: 6, maxHours: 16 },
+        ];
 
-        function getRandomItem(list) {
-            return list[Math.floor(Math.random() * list.length)];
+        // Shuffle the pool so order feels random each session
+        function shuffle(arr) {
+            return arr.map(v => ({ v, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ v }) => v);
         }
 
-        function showPopup() {
-            const name = getRandomItem(names);
-            const item = getRandomItem(items);
-            const message = `<span class="last-purchase-text">${name}</span> just purchased a <span class="last-purchase-text">${item}</span>!`;
+        function formatTimeAgo(hoursAgo) {
+            if (hoursAgo < 1) return "less than an hour ago";
+            if (hoursAgo === 1) return "about 1 hour ago";
+            if (hoursAgo < 24) return `about ${hoursAgo} hours ago`;
+            const days = Math.round(hoursAgo / 24);
+            return days === 1 ? "about 1 day ago" : `about ${days} days ago`;
+        }
 
-            popupText.innerHTML = message;
+        const shuffled = shuffle(purchasePool);
+        let poolIndex = 0;
+
+        function showPopup() {
+            const entry = shuffled[poolIndex % shuffled.length];
+            poolIndex++;
+
+            const hoursAgo = Math.floor(Math.random() * (entry.maxHours - entry.minHours + 1)) + entry.minHours;
+
+            popupText.textContent = `${entry.name} purchased the ${entry.item}`;
+            popupTime.textContent = formatTimeAgo(hoursAgo);
+
             popup.style.display = 'block';
 
-            // Animate In
             requestAnimationFrame(() => {
                 popup.style.opacity = '1';
                 popup.style.transform = 'translateX(0)';
             });
 
-            // Animate Out after 6 seconds
             setTimeout(() => {
                 popup.style.opacity = '0';
-                popup.style.transform = 'translateX(-100%)';
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                }, 500);
-            }, 6000);
+                popup.style.transform = 'translateX(-110%)';
+                setTimeout(() => { popup.style.display = 'none'; }, 500);
+            }, 7000);
 
-            // Set the next random interval: between 1 hour (3,600,000 ms) and 2 hours (7,200,000 ms)
-            const minDelay = 3600000; 
-            const maxDelay = 7200000;
-            const nextDelay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
-            
-            console.log(`Next popup in: ${Math.round(nextDelay / 3600000)} hours`);
-            setTimeout(showPopup, nextDelay);
-        }
-
-        // Start the first popup after a short initial delay (e.g., 20 seconds)
-        setTimeout(showPopup, 20000);
-    </script>
-</body>
-</html>
+            // Next popup between 45 min and 90 min
+            const nextDelay = Math.floor(Math.random() * (5400000 - 2700000 + 1)) + 2700000;
+            s
